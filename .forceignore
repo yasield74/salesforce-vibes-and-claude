@@ -4,6 +4,9 @@
 
 package.xml
 
+# Flexipage managed via App Builder — retrieve after saving there
+**/flexipages/**
+
 # LWC configuration files
 **/jsconfig.json
 **/.eslintrc.json
