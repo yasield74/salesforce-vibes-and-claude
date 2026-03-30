@@ -1,0 +1,99 @@
+<template>
+  <lightning-card title="Account Overview" icon-name="standard:account">
+    <template lwc:if={account}>
+      <div class="slds-card__body slds-card__body_inner">
+        <div class="slds-grid slds-gutters slds-wrap">
+          <!-- Identity -->
+          <div class="slds-col slds-size_1-of-2">
+            <h3 class="section-title">Identity</h3>
+            <dl class="slds-dl_horizontal">
+              <dt class="slds-dl__title">Name</dt>
+              <dd class="slds-dl__detail">{account.Name}</dd>
+              <dt class="slds-dl__title">Industry</dt>
+              <dd class="slds-dl__detail">{account.Industry}</dd>
+              <dt class="slds-dl__title">Type</dt>
+              <dd class="slds-dl__detail">{account.Type}</dd>
+              <dt class="slds-dl__title">Phone</dt>
+              <dd class="slds-dl__detail">{account.Phone}</dd>
+              <dt class="slds-dl__title">Website</dt>
+              <dd class="slds-dl__detail">{account.Website}</dd>
+            </dl>
+          </div>
+
+          <!-- Size & Revenue -->
+          <div class="slds-col slds-size_1-of-2">
+            <h3 class="section-title">Size &amp; Revenue</h3>
+            <dl class="slds-dl_horizontal">
+              <dt class="slds-dl__title">Annual Revenue</dt>
+              <dd class="slds-dl__detail">{formattedRevenue}</dd>
+              <dt class="slds-dl__title">Employees</dt>
+              <dd class="slds-dl__detail">{account.NumberOfEmployees}</dd>
+              <dt class="slds-dl__title">Locations</dt>
+              <dd class="slds-dl__detail">{account.NumberofLocations__c}</dd>
+            </dl>
+          </div>
+
+          <!-- Status -->
+          <div class="slds-col slds-size_1-of-2 slds-m-top_medium">
+            <h3 class="section-title">Status</h3>
+            <div class="slds-m-bottom_x-small">
+              <span class={activeVariant}>{account.Active__c}</span>
+            </div>
+            <template lwc:if={account.CustomerPriority__c}>
+              <div class="slds-m-bottom_x-small">
+                <span class={priorityVariant}
+                  >Priority: {account.CustomerPriority__c}</span
+                >
+              </div>
+            </template>
+            <template lwc:if={account.UpsellOpportunity__c}>
+              <div class="slds-m-bottom_x-small">
+                <span class="badge badge-upsell"
+                  >Upsell: {account.UpsellOpportunity__c}</span
+                >
+              </div>
+            </template>
+            <template lwc:if={account.Rating}>
+              <div class="slds-m-top_x-small slds-text-body_small">
+                Rating: {account.Rating}
+              </div>
+            </template>
+          </div>
+
+          <!-- SLA -->
+          <div class="slds-col slds-size_1-of-2 slds-m-top_medium">
+            <h3 class="section-title">SLA</h3>
+            <template lwc:if={account.SLA__c}>
+              <div class="slds-m-bottom_x-small">
+                <span class={slaTierVariant}>{account.SLA__c}</span>
+              </div>
+            </template>
+            <template lwc:if={account.SLASerialNumber__c}>
+              <div class="slds-text-body_small slds-m-bottom_x-small">
+                Serial #: {account.SLASerialNumber__c}
+              </div>
+            </template>
+            <template lwc:if={account.SLAExpirationDate__c}>
+              <div class={slaExpirationClass}>
+                <template lwc:if={slaExpiring}>
+                  <lightning-icon
+                    icon-name="utility:warning"
+                    size="x-small"
+                    class="slds-m-right_xx-small"
+                  ></lightning-icon>
+                </template>
+                Expires: {account.SLAExpirationDate__c}
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template lwc:if={error}>
+      <div class="slds-card__body slds-card__body_inner">
+        <p class="slds-text-color_error">{errorMessage}</p>
+      </div>
+    </template>
+  </lightning-card>
+</template>

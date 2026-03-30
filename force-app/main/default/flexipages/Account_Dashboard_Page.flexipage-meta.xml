@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Account Dashboard Page</masterLabel>
+    <flexiPageType>RecordPage</flexiPageType>
+    <sobjectType>Account</sobjectType>
+    <template>
+        <name>RecordPage2Column</name>
+    </template>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>c:accountDashboard</componentName>
+            </componentInstance>
+        </itemInstances>
+        <mode>AppDefault</mode>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+</FlexiPage>

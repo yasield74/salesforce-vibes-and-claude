@@ -1,0 +1,83 @@
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #3e3e3c;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Active / Inactive */
+.badge-active {
+  background-color: #04844b;
+  color: #fff;
+}
+
+.badge-inactive {
+  background-color: #9e9e9e;
+  color: #fff;
+}
+
+/* Customer Priority */
+.badge-priority-high {
+  background-color: #c23934;
+  color: #fff;
+}
+
+.badge-priority-medium {
+  background-color: #ffb75d;
+  color: #000;
+}
+
+.badge-priority-low {
+  background-color: #04844b;
+  color: #fff;
+}
+
+/* SLA Tier */
+.badge-sla-platinum {
+  background-color: #1589ee;
+  color: #fff;
+}
+
+.badge-sla-gold {
+  background-color: #ffb75d;
+  color: #000;
+}
+
+.badge-sla-silver {
+  background-color: #9e9e9e;
+  color: #fff;
+}
+
+.badge-sla-bronze {
+  background-color: #f4a261;
+  color: #000;
+}
+
+/* Upsell */
+.badge-upsell {
+  background-color: #7f8de1;
+  color: #fff;
+}
+
+/* SLA Expiration */
+.sla-expiration {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+
+.sla-expiring {
+  color: #c23934;
+  font-weight: 600;
+}
