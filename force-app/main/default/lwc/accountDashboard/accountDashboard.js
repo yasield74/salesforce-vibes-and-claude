@@ -35,6 +35,12 @@ export default class AccountDashboard extends LightningElement {
   get errorMessage() {
     if (!this.error) return "";
     if (typeof this.error === "string") return this.error;
+    // Handle common wire error shapes
+    if (Array.isArray(this.error)) {
+      const first = this.error.find((e) => e && (e.message || e.body?.message));
+      if (first?.message) return first.message;
+      if (first?.body?.message) return first.body.message;
+    }
     if (this.error.body?.message) return this.error.body.message;
     return "An unexpected error occurred.";
   }
@@ -70,7 +76,18 @@ export default class AccountDashboard extends LightningElement {
     return diffDays >= 0 && diffDays <= SLA_WARNING_DAYS;
   }
 
+  get slaExpired() {
+    if (!this.account?.SLAExpirationDate__c) return false;
+    const expDate = new Date(this.account.SLAExpirationDate__c);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return expDate < today;
+  }
+
   get slaExpirationClass() {
+    if (this.slaExpired) {
+      return "sla-expiration sla-expiring";
+    }
     return this.slaExpiring ? "sla-expiration sla-expiring" : "sla-expiration";
   }
 }

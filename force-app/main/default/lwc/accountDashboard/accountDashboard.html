@@ -75,14 +75,25 @@
             </template>
             <template lwc:if={account.SLAExpirationDate__c}>
               <div class={slaExpirationClass}>
-                <template lwc:if={slaExpiring}>
+                <template lwc:if={slaExpired}>
+                  <lightning-icon
+                    icon-name="utility:error"
+                    size="x-small"
+                    class="slds-m-right_xx-small"
+                  ></lightning-icon>
+                  <span>Expired: {account.SLAExpirationDate__c}</span>
+                </template>
+                <template lwc:elseif={slaExpiring}>
                   <lightning-icon
                     icon-name="utility:warning"
                     size="x-small"
                     class="slds-m-right_xx-small"
                   ></lightning-icon>
+                  <span>Expires: {account.SLAExpirationDate__c}</span>
                 </template>
-                Expires: {account.SLAExpirationDate__c}
+                <template lwc:else>
+                  <span>Expires: {account.SLAExpirationDate__c}</span>
+                </template>
               </div>
             </template>
           </div>
